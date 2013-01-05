@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="D:\Proyectos\HellBlaster\HellBlasterTest\bin\Debug\HellBlasterTest.dll" total="1" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-12-22" time="16:18:10">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\Jorge\Downloads\NUnit-2.6.1\NUnit-2.6.1\bin" machine-name="SOBREMESA" user="Jorge" user-domain="sobremesa" />
+  <culture-info current-culture="es-ES" current-uiculture="es-ES" />
+  <test-suite type="Assembly" name="D:\Proyectos\HellBlaster\HellBlasterTest\bin\Debug\HellBlasterTest.dll" executed="True" result="Failure" success="False" time="0.072" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="HellBlasterTest" executed="True" result="Failure" success="False" time="0.055" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.055" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="TestReferencias" executed="True" result="Failure" success="False" time="0.053" asserts="0">
+                <results>
+                  <test-case name="HellBlasterTest.Tests.TestReferencias.UnaReferenciaPorDefectoTieneVersion100" executed="True" result="Failure" success="False" time="0.036" asserts="0">
+                    <failure>
+                      <message><![CDATA[Assert.Equals should not be used for Assertions]]></message>
+                      <stack-trace><![CDATA[at HellBlasterTest.Tests.TestReferencias.UnaReferenciaPorDefectoTieneVersion100() in D:\Proyectos\HellBlaster\HellBlasterTest\Tests\TestReferencias.cs:line 17
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

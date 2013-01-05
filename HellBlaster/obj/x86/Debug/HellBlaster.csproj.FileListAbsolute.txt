@@ -1,0 +1,12 @@
+D:\Proyectos\HellBlaster\HellBlaster\bin\Debug\HellBlaster.exe
+D:\Proyectos\HellBlaster\HellBlaster\bin\Debug\HellBlaster.pdb
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\MainWindow.baml
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\MainWindow.g.cs
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\App.g.cs
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster_MarkupCompile.cache
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.g.resources
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.Properties.Resources.resources
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.csproj.GenerateResource.Cache
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.exe
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.pdb
+D:\Proyectos\HellBlaster\HellBlaster\bin\Debug\HellBlaster.exe.config
