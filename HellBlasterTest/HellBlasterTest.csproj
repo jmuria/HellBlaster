@@ -55,6 +55,7 @@
     <Compile Include="Tests\ReferenceInProjectUpdaterTests.cs" />
     <Compile Include="Tests\ReferenceTests.cs" />
     <Compile Include="Tests\ReferenceUpdaterTests.cs" />
+    <Compile Include="Tests\SolutionReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\nunit.framework.dll">
