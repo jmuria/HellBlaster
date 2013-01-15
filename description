@@ -1,1 +1,14 @@
-Unnamed repository; edit this file 'description' to name the repository.
+Sometimes you know that you shouldn't be where you are. You made wrong decissions and now you are walking on Hell.
+Your Visual Studio solutions and projects use a lot of internal libraries that you or your team code and you use... 
+Well.. It's hard but you have to be honest... You use file reference for them. A sigle change in one of the libraries 
+imples that you have to navigate through all your solutions and projects and one by one changing the referente to the new one. 
+You may have those libraries in one central storage or in a local mirror named R: or whatever but this does not help on that. 
+Perhaps you have wandered about don't changing the library version so you don't need to change the references... That means
+going deeper and deeper because that means that there is no past, just present. You cannot make any release branch and
+hotfix to save any situation. 
+Well.. I know what that Hell means and perhaps you are in the same situation. But even in the worst situation you need
+a full powered weapon to let you survive while you find the way out. This is the purpose of this tool. This tools helps
+to find all the file references in all the solutions and projects and let you update all of them in just a couple of clicks. 
+Oh yeah ! That sounds good. 
+Be my partner and walk on Hell with me with this weapon. Perhapts with this, the Hell is not so Hell as before.
+
