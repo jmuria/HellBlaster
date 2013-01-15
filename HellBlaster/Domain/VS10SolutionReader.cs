@@ -21,15 +21,20 @@ namespace HellBlaster.Domain
 		private static List<VS10Project> FindProjectsInSolutionFile(string solutionfilecontent)
 		{
 			List<VS10Project> projects = new List<VS10Project>();
+
+			foreach (string LineWithProject in LinesWithProjectEntries(solutionfilecontent))
+				projects.Add(new VS10Project());
+
+			return projects;
+		}
+
+		private static IEnumerable<string> LinesWithProjectEntries(string solutionfilecontent)
+		{
 			string[] lines = solutionfilecontent.Split('\n');
 			IEnumerable<string> linesWithProjects = from line in lines
 													where line.IndexOf(ProjectTag) == 0
 													select line;
-			foreach (string project in linesWithProjects)
-			{
-				projects.Add(new VS10Project());
-			}
-			return projects;
+			return linesWithProjects;
 		}
 
 
