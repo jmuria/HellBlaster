@@ -10,5 +10,7 @@ namespace HellBlaster.Domain
 		public string Name { get; set; }
 
 		public string RelativePath { get; set; }
+
+		public string FullPath { get; set; }
 	}
 }

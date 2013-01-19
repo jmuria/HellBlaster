@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace HellBlaster.Domain
 {
@@ -9,6 +10,9 @@ namespace HellBlaster.Domain
 	{
 
 		private static string ProjectTag	{get{return "Project(\"{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}\")";}}
+		private string FileContent;
+		private static string SolutionPath;
+		public string LastError { get; protected set; }
 
 		public List<VS10Project> FindProjects(string solutionfilecontent)
 		{
@@ -33,6 +37,11 @@ namespace HellBlaster.Domain
 			VS10Project project = new VS10Project();
 			project.Name = ProjectName(LineWithProject);
 			project.RelativePath = RelativePath(LineWithProject);
+			if (!String.IsNullOrEmpty(SolutionPath))
+			{
+				string solutionFolder = SolutionPath.Substring(0, SolutionPath.LastIndexOf('\\'));
+				project.FullPath=Path.Combine(solutionFolder,project.RelativePath);
+			}
 			return project;
 		}
 
@@ -66,5 +75,23 @@ namespace HellBlaster.Domain
 		}
 
 
+
+		public void Read(string solutionPath)
+		{
+			try
+			{
+				FileContent = new FileInfo(solutionPath).OpenText().ReadToEnd();
+				SolutionPath = solutionPath;
+			}
+			catch (Exception e)
+			{
+				LastError = e.Message;
+			}
+		}
+
+		public List<VS10Project> FindProjects()
+		{
+			return FindProjects(FileContent);
+		}
 	}
 }

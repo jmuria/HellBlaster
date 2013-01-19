@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.IO;
 
 namespace HellBlaster.Domain
 {
@@ -14,6 +15,9 @@ namespace HellBlaster.Domain
 		protected string VersionAttribute	{ get { return "Version"; } }
 		protected string PathTag			{ get { return "HintPath"; } }
 		protected string IncludeAttr		{ get { return "Include"; } }
+		private string FileContent;
+		public string LastError { get; protected set; }
+
 
 		protected XNamespace Namespace
 		{
@@ -36,7 +40,9 @@ namespace HellBlaster.Domain
 					foundFileRefs = new List<FileReference>();
 					foreach (XElement fref in filerefs)
 					{
-						foundFileRefs.Add(new FileReference(NameInsideAttribute(fref),VersionInsideAttribute(fref), ReferencePath(fref)));
+						string refPath = ReferencePath(fref);
+						if(!String.IsNullOrEmpty(refPath))
+							foundFileRefs.Add(new FileReference(NameInsideAttribute(fref),VersionInsideAttribute(fref), ReferencePath(fref)));
 					}
 				}
 				return foundFileRefs;
@@ -74,7 +80,8 @@ namespace HellBlaster.Domain
 		protected IEnumerable<XElement> AllReferencesIntheProject(XElement project)
 		{
 			return from fref in project.Descendants(Namespace + ReferenceTag)
-				   select fref;
+				   where HasReferencePath(fref)
+				   select fref  ;
 		}
 
 
@@ -88,7 +95,17 @@ namespace HellBlaster.Domain
 
 		protected string ReferencePath(XElement fref)
 		{
-			return (string)fref.Elements(Namespace + PathTag).FirstOrDefault().Value;
+			return PathElement(fref).Value;
+		}
+
+		private bool HasReferencePath(XElement fref)
+		{
+			return PathElement(fref) != null;
+		}
+
+		private XElement PathElement(XElement fref)
+		{
+			return fref.Elements(Namespace + PathTag).FirstOrDefault();
 		}
 
 		protected string VersionInsideAttribute(XElement fref)
@@ -99,9 +116,24 @@ namespace HellBlaster.Domain
 
 			return includeStr.Substring(pos, posFinal-pos);
 		}
-		
 
-	
-		
+
+
+		public void Read(string projectPath)
+		{
+			try
+			{
+				FileContent = new FileInfo(projectPath).OpenText().ReadToEnd();
+			}
+			catch (Exception e)
+			{
+				LastError = e.Message;
+			}
+		}
+
+		public List<FileReference> FindReferences()
+		{
+			return FindReferences(FileContent);
+		}
 	}
 }
