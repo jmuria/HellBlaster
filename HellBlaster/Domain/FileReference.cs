@@ -38,7 +38,7 @@ namespace HellBlaster.Domain
 
 		public void UpdateTo(string newVersion)
 		{
-			if (!String.IsNullOrEmpty(Path))
+			if (!String.IsNullOrEmpty(Path) && !String.IsNullOrEmpty(VersionInPath()))
 				Path = Path.Replace(VersionInPath(), newVersion);
 			
 			this.Version = newVersion;

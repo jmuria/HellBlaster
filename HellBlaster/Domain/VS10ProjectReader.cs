@@ -15,7 +15,8 @@ namespace HellBlaster.Domain
 		protected string VersionAttribute	{ get { return "Version"; } }
 		protected string PathTag			{ get { return "HintPath"; } }
 		protected string IncludeAttr		{ get { return "Include"; } }
-		private string FileContent;
+		protected string FileContent;
+		protected string LoadedProjectPath;
 		public string LastError { get; protected set; }
 
 
@@ -123,7 +124,9 @@ namespace HellBlaster.Domain
 		{
 			try
 			{
-				FileContent = new FileInfo(projectPath).OpenText().ReadToEnd();
+				LoadedProjectPath = projectPath;
+				using(StreamReader reader=new FileInfo(projectPath).OpenText())
+					FileContent = reader.ReadToEnd();
 			}
 			catch (Exception e)
 			{
@@ -131,7 +134,7 @@ namespace HellBlaster.Domain
 			}
 		}
 
-		public List<FileReference> FindReferences()
+		public List<FileReference> FindFileReferences()
 		{
 			return FindReferences(FileContent);
 		}
