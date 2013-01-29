@@ -7,3 +7,4 @@ D:\Proyectos\HellBlaster\HellBlasterTest\bin\Debug\nunit.framework.dll
 D:\Proyectos\HellBlaster\HellBlasterTest\bin\Debug\HellBlaster.pdb
 D:\Proyectos\HellBlaster\HellBlasterTest\obj\Debug\HellBlasterTest.dll
 D:\Proyectos\HellBlaster\HellBlasterTest\obj\Debug\HellBlasterTest.pdb
+D:\Proyectos\HellBlaster\HellBlasterTest\bin\Debug\Moq.dll

@@ -64,11 +64,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\MainPageCtrl.cs" />
     <Compile Include="Domain\FileReference.cs" />
     <Compile Include="Domain\VS10Project.cs" />
     <Compile Include="Domain\VS10ProjectReader.cs" />
     <Compile Include="Domain\VS10ProjectWriter.cs" />
     <Compile Include="Domain\VS10SolutionReader.cs" />
+    <Compile Include="Interfaces\IMainPageView.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -99,6 +101,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>powershell "Get-Process VisualNunitRunner* -ErrorAction SilentlyContinue | kill"</PreBuildEvent>

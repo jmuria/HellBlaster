@@ -42,7 +42,7 @@ namespace HellBlasterTest.Tests
 			String projectXML = pr.UpdateReference(newRef);
 
 			VS10ProjectReader prReader = new VS10ProjectReader();
-			List<FileReference> refs = prReader.FindReferences(projectXML);
+			List<FileReference> refs = prReader.FindFileReferences(projectXML);
 			Assert.AreEqual(@"libs\nunit.framework.dll", refs[0].Path);
 			Assert.AreEqual("2.6.1.12217", refs[0].Version);
 		}
@@ -58,7 +58,7 @@ namespace HellBlasterTest.Tests
 			String projectXML=pr.UpdateReference(newRef);
 
 			VS10ProjectReader prReader = new VS10ProjectReader();
-			List<FileReference> refs = prReader.FindReferences(projectXML);
+			List<FileReference> refs = prReader.FindFileReferences(projectXML);
 			Assert.AreEqual(@"libs\2.7\nunit.framework.dll", refs[0].Path);
 			Assert.AreEqual("2.7", refs[0].Version);
 			Assert.AreEqual("nunit.framework", refs[0].Name);

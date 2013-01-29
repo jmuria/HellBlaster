@@ -29,12 +29,12 @@ namespace HellBlaster.Domain
 			}
 		}
 
-		public List<FileReference> FindReferences(string projectfilecontent)
+		public List<FileReference> FindFileReferences(string projectfilecontent)
 		{
 			try
 			{
 				List<FileReference> foundFileRefs = null;
-				IEnumerable<XElement> filerefs=	FindFileReferences(projectfilecontent);
+				IEnumerable<XElement> filerefs=	FindFileReferenceElements(projectfilecontent);
 
 				if (filerefs != null)
 				{
@@ -58,7 +58,7 @@ namespace HellBlaster.Domain
 			}
 		}
 
-		protected IEnumerable<XElement> FindFileReferences(string projectfilecontent)
+		protected IEnumerable<XElement> FindFileReferenceElements(string projectfilecontent)
 		{
 			XElement project = XElement.Parse(projectfilecontent);
 			return FindFileReferences(project);
@@ -136,7 +136,7 @@ namespace HellBlaster.Domain
 
 		public List<FileReference> FindFileReferences()
 		{
-			return FindReferences(FileContent);
+			return FindFileReferences(FileContent);
 		}
 	}
 }

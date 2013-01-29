@@ -37,7 +37,7 @@ namespace HellBlasterTest.Tests
 		public void WhenTheStringIsEmptyIGetANUllReferenceList()
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
-			Assert.IsNull(pr.FindReferences(null as string));
+			Assert.IsNull(pr.FindFileReferences(null as string));
 		}
 
 
@@ -45,7 +45,7 @@ namespace HellBlasterTest.Tests
 		public void WhenTheStringIsNotAnXMLIGetANullReferenceList()
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
-			Assert.IsNull(pr.FindReferences("This is not a xml"));
+			Assert.IsNull(pr.FindFileReferences("This is not a xml"));
 		}
 
 
@@ -53,7 +53,7 @@ namespace HellBlasterTest.Tests
 		public void WhenTheStringIsNotAnVS10XMLIGetANullReferenceList()
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
-			Assert.IsNull(pr.FindReferences("<xml><sample>10</sample></xml>"));
+			Assert.IsNull(pr.FindFileReferences("<xml><sample>10</sample></xml>"));
 		}
 
 
@@ -62,7 +62,7 @@ namespace HellBlasterTest.Tests
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
 			
-			List<FileReference> refs = pr.FindReferences(vs10withOneFileReference);
+			List<FileReference> refs = pr.FindFileReferences(vs10withOneFileReference);
 			Assert.IsNotNull(refs);
 			Assert.AreEqual(1,refs.Count);
 		}
@@ -72,7 +72,7 @@ namespace HellBlasterTest.Tests
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
 			
-			List<FileReference> refs = pr.FindReferences(vs10withOneFileReference);
+			List<FileReference> refs = pr.FindFileReferences(vs10withOneFileReference);
 			Assert.AreEqual("2.6.1.12217", refs[0].Version);
 		}
 
@@ -81,7 +81,7 @@ namespace HellBlasterTest.Tests
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
 
-			List<FileReference> refs = pr.FindReferences(vs10withOneFileReference);
+			List<FileReference> refs = pr.FindFileReferences(vs10withOneFileReference);
 			Assert.AreEqual(@"libs\nunit.framework.dll", refs[0].Path);
 		}
 
@@ -90,7 +90,7 @@ namespace HellBlasterTest.Tests
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
 
-			List<FileReference> refs = pr.FindReferences(vs10withOneFileReference);
+			List<FileReference> refs = pr.FindFileReferences(vs10withOneFileReference);
 			Assert.AreEqual("nunit.framework", refs[0].Name);
 		}
 	}
