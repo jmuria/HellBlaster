@@ -10,15 +10,20 @@ namespace HellBlaster.Controllers
 	public class MainPageCtrl
 	{
 		public IMainPageView View { protected get; set; }
+		List<VS10Project> projects;
+	
 
 		public void LoadSolutionFile(string solutionPath)
 		{
-			foreach (VS10Project project in FindProjects(solutionPath))
+			projects=FindProjects(solutionPath);
+			foreach (VS10Project project in projects)
+			{
 				ShowProjectInSolution(project);
+			}
 		}
 
-		private static List<VS10Project> FindProjects(string solutionPath)
-		{
+		private  List<VS10Project> FindProjects(string solutionPath)
+		{			
 			VS10SolutionReader solReader = new VS10SolutionReader();
 			solReader.Read(solutionPath);
 			return solReader.FindProjects();			
@@ -39,6 +44,37 @@ namespace HellBlaster.Controllers
 			return projReader.FindFileReferences();			
 		}
 
-		
+
+
+		public void UpdateFileReference(string referenceName, string referenceVersion)
+		{
+			foreach (VS10Project project in projects)
+			{
+				FileReference found = FindReferenceInProject(project, referenceName);
+				if (found!=null)
+				{
+					found.UpdateTo(referenceVersion);
+					UpdateReferenceInProject(project, found);
+					View.UpdateFileRefence(project.Name, referenceName, referenceVersion);
+				}
+			}
+			
+		}
+
+		private static void UpdateReferenceInProject( VS10Project project, FileReference found)
+		{
+			VS10ProjectWriter projWriter = new VS10ProjectWriter();
+			projWriter.Read(project.FullPath);			
+			projWriter.UpdateReference(found);
+			projWriter.WriteToFile();
+		}
+
+		private static FileReference FindReferenceInProject( VS10Project project,string referenceName)
+		{
+			foreach (FileReference fileRef in FindFileReferences(project))
+				if (fileRef.Name == referenceName)
+					return fileRef;
+			return null;
+		}
 	}
 }
