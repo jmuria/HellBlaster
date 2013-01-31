@@ -1,8 +1,19 @@
 ﻿<Window x:Class="HellBlaster.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" >Solution Path:</TextBlock>
+            <TextBox x:Name="SolutionPath" Width="300"></TextBox>
+            <Button x:Name="Select" Click="Select_Click">Select</Button>
+            <Button x:Name="Analyze" Click="Analyze_Click">Analyze</Button>
+        </StackPanel>
+        <StackPanel x:Name="Projects" Grid.Row="1" Orientation="Vertical">
+        </StackPanel>
     </Grid>
 </Window>
