@@ -41,8 +41,18 @@ namespace HellBlaster
 		public void AddFileRefence(string name, string version)
 		{
 			TextBlock tb = new TextBlock();
-			tb.Text = name+":"+version;
+			DisplayReference(tb,name, version);
 			Projects.Children.Add(tb);
+		}
+
+		private static void DisplayReference( TextBlock tb,string name, string version)
+		{
+			tb.Text = "\t" + ReferenceText(name, version);
+		}
+
+		private static string ReferenceText(string name, string version)
+		{
+			return name + ": " + version;
 		}
 
 		public void UpdateFileRefence(string projectName, string assemblyName, string assemblyVersion)
@@ -51,7 +61,7 @@ namespace HellBlaster
 			{
 				if (tb.Text.Contains(assemblyName))
 				{
-					tb.Text = assemblyName + ":" + assemblyVersion;
+					DisplayReference(tb, assemblyName, assemblyVersion);
 				}
 			}
 		}

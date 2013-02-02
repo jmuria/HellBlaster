@@ -89,9 +89,9 @@ namespace HellBlaster.Domain
 		protected string NameInsideAttribute(XElement fref)
 		{
 			string includeStr = fref.Attribute(IncludeAttr).Value;
-			
-			int posFinal = includeStr.IndexOf(',');
-			return includeStr.Substring(0, posFinal);
+
+			return includeStr.Split(',')[0];
+			//return includeStr.Substring(0, posFinal);
 		}
 
 		protected string ReferencePath(XElement fref)
@@ -112,10 +112,13 @@ namespace HellBlaster.Domain
 		protected string VersionInsideAttribute(XElement fref)
 		{
 			string includeStr = fref.Attribute(IncludeAttr).Value;
-			int pos = includeStr.IndexOf(VersionAttribute) + VersionAttribute.Length+1;
-			int posFinal = includeStr.IndexOf(',', pos);
-
-			return includeStr.Substring(pos, posFinal-pos);
+			
+			string[] IncludeAttrElements = includeStr.Split(',');
+			if (IncludeAttrElements.Count() > 1)
+				return IncludeAttrElements[1].Split('=')[1];
+			else
+				return null;
+			
 		}
 
 
