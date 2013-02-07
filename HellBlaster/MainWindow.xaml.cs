@@ -47,13 +47,10 @@ namespace HellBlaster
 
 		private static void DisplayReference( TextBlock tb,string name, string version)
 		{
-			tb.Text = "\t" + ReferenceText(name, version);
+			tb.Text = "\t" + name + ": " + version;
+			tb.Tag = name;
 		}
-
-		private static string ReferenceText(string name, string version)
-		{
-			return name + ": " + version;
-		}
+		
 
 		public void UpdateFileRefence(string projectName, string assemblyName, string assemblyVersion)
 		{
@@ -85,6 +82,14 @@ namespace HellBlaster
 		private void Analyze_Click(object sender, RoutedEventArgs e)
 		{
 			ctrl.LoadSolutionFile(SolutionPath.Text);
+		}
+
+		private void Update_Click(object sender, RoutedEventArgs e)
+		{
+			if (!String.IsNullOrEmpty(AssemblyName.Text) && !String.IsNullOrEmpty(NewVersion.Text))
+			{
+				ctrl.UpdateFileReference(AssemblyName.Text, NewVersion.Text);
+			}
 		}
 	}
 }

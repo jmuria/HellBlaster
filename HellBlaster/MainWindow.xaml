@@ -5,15 +5,23 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >Solution Path:</TextBlock>
-            <TextBox  VerticalAlignment="Center" x:Name="SolutionPath" Width="300"></TextBox>
+            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="SolutionPath" Width="300"></TextBox>
             <Button x:Name="Select" Click="Select_Click">Select</Button>
             <Button x:Name="Analyze" Click="Analyze_Click">Analyze</Button>
         </StackPanel>
-        <StackPanel x:Name="Projects" Grid.Row="1" Orientation="Vertical">
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >Update:</TextBlock>
+            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="AssemblyName" Width="120"></TextBox>
+            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >To:</TextBlock>
+            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="NewVersion" Width="40"></TextBox>
+            <Button x:Name="Update" Click="Update_Click">Update</Button>
+        </StackPanel>
+        <StackPanel x:Name="Projects" Grid.Row="2" Orientation="Vertical">
         </StackPanel>
     </Grid>
 </Window>

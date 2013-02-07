@@ -46,6 +46,7 @@ namespace HellBlaster.Domain
 
 		private string VersionInPath()
 		{
+			if (Version == null) return null;
 			for (int digits = 4; digits > 0; digits--)
 			{
 				string subVersion = Version.Substring(0, DigitPosition(digits));
