@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HellBlaster.Interfaces;
 using HellBlaster.Controllers;
+using HellBlaster.View;
+using System.Collections.ObjectModel;
 
 namespace HellBlaster
 {
@@ -22,43 +24,46 @@ namespace HellBlaster
 	public partial class MainWindow : Window,IMainPageView
 	{
 		MainPageCtrl ctrl;
+		public ObservableCollection<Reference> References { get; set; }
+		string lastProjectName;
+
 		public MainWindow()
 		{
 			ctrl = new MainPageCtrl();
 			ctrl.View = this;
+			References = new ObservableCollection<Reference>();			
+			
 			InitializeComponent();
+			
+			Projects.DataContext = References;
 		}
 
 
 
 		public void AddProject(string projectName)
-		{
-			TextBlock tb = new TextBlock();
-			tb.Text = projectName;
-			Projects.Children.Add(tb);
+		{				
+			lastProjectName = projectName;			
 		}
 
 		public void AddFileRefence(string name, string version)
 		{
-			TextBlock tb = new TextBlock();
-			DisplayReference(tb,name, version);
-			Projects.Children.Add(tb);
+			Reference newRef = new Reference();
+			newRef.projectName = lastProjectName;
+			newRef.referenceName = name;
+			newRef.version = version;
+			References.Add(newRef);
 		}
 
-		private static void DisplayReference( TextBlock tb,string name, string version)
-		{
-			tb.Text = "\t" + name + ": " + version;
-			tb.Tag = name;
-		}
+		
 		
 
 		public void UpdateFileRefence(string projectName, string assemblyName, string assemblyVersion)
 		{
-			foreach (TextBlock tb in Projects.Children)
+			foreach (Reference refItem in References)
 			{
-				if (tb.Text.Contains(assemblyName))
+				if (refItem.referenceName ==assemblyName)
 				{
-					DisplayReference(tb, assemblyName, assemblyVersion);
+					refItem.version=assemblyVersion;
 				}
 			}
 		}
@@ -91,5 +96,8 @@ namespace HellBlaster
 				ctrl.UpdateFileReference(AssemblyName.Text, NewVersion.Text);
 			}
 		}
+
+		
+
 	}
 }

@@ -21,7 +21,14 @@
             <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="NewVersion" Width="40"></TextBox>
             <Button x:Name="Update" Click="Update_Click">Update</Button>
         </StackPanel>
-        <StackPanel x:Name="Projects" Grid.Row="2" Orientation="Vertical">
-        </StackPanel>
+        <ListView x:Name="Projects" Grid.Row="2" ItemsSource="{Binding}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true"     >
+                    <GridViewColumn Header="Project" Width="150" DisplayMemberBinding="{Binding Path=projectName}" />
+                    <GridViewColumn Header="Reference" Width="170" DisplayMemberBinding="{Binding Path=referenceName}" />
+                    <GridViewColumn Header="Version" Width="250" DisplayMemberBinding="{Binding Path=version}" />                    
+                </GridView>
+            </ListView.View>
+        </ListView>            
     </Grid>
 </Window>
