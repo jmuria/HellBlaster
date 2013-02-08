@@ -61,8 +61,16 @@ namespace HellBlaster.Domain
 		{
 			XElement pathElt = foundRefElt.Elements(Namespace + PathTag).FirstOrDefault();
 			pathElt.Value = newRef.Path;
+			UpdateVersionAttribute(foundRefElt, newRef.Version);
+		}
+
+		private void UpdateVersionAttribute(XElement foundRefElt, string newVersion)
+		{
 			XAttribute attr = foundRefElt.Attribute(IncludeAttr);
-			attr.Value = attr.Value.Replace(VersionInsideAttribute(foundRefElt), newRef.Version);
+			if (!String.IsNullOrEmpty(VersionInsideAttribute(foundRefElt)))
+				attr.Value = attr.Value.Replace(VersionInsideAttribute(foundRefElt), newVersion);
+			else
+				attr.Value = attr.Value + ", Version=" + newVersion;
 		}
 
 		private static XmlWriterSettings XMLSettings()
