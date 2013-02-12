@@ -99,5 +99,19 @@ namespace HellBlaster
 
 		
 
+		private void AssemblyName_KeyDown(object sender, KeyEventArgs e)
+		{
+			ctrl.WritingReference(AssemblyName.Text);
+		}
+
+
+		public void SuggestFileRefence(string assemblyName)
+		{
+			AssemblyName.Text = assemblyName;
+		}
+
+		
+
+		
 	}
 }

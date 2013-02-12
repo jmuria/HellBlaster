@@ -16,7 +16,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >Update:</TextBlock>
-            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="AssemblyName" Width="120"></TextBox>
+            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="AssemblyName" KeyDown="AssemblyName_KeyDown" Width="120"></TextBox>
             <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >To:</TextBlock>
             <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="NewVersion" Width="40"></TextBox>
             <Button x:Name="Update" Click="Update_Click">Update</Button>
