@@ -23,6 +23,7 @@ namespace HellBlaster.Controllers
 		public void LoadSolutionFile(string solutionPath)
 		{
 			projects=FindProjects(solutionPath);
+			View.CleanReferences();
 			foreach (VS10Project project in projects)
 				ShowProjectInSolution(project);
 		}
@@ -87,16 +88,20 @@ namespace HellBlaster.Controllers
 			return null;
 		}
 
-		
 
-		public void WritingReference(string namePart)
+
+		public bool ReferenceSuggested(string namePart)
 		{
 			if (!String.IsNullOrEmpty(namePart))
 			{				
 				string foundReference = FindReferenceByNamePart(namePart);
 				if (!String.IsNullOrEmpty(foundReference))
+				{
 					View.SuggestFileRefence(foundReference);
+					return true;
+				}
 			}
+			return false;
 		}
 
 		private string FindReferenceByNamePart(string namePart)

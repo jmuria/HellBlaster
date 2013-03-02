@@ -38,6 +38,15 @@ namespace HellBlasterTest.Tests
 			viewMock.Verify(foo => foo.AddFileRefence(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(1));
 		}
 
+
+		[Test]
+		public void WhenILoadASolutionFileThePreviouslyLoadedReferencesAreCleaned()
+		{
+			mainCtrl.LoadSolutionFile(TestSolutionPath);
+
+			viewMock.Verify(foo => foo.CleanReferences(), Times.Exactly(1));			
+		}
+
 		[Test]
 		public void WhenIChangeAReferenceVersionTheInterfaceShowsTheChanges()
 		{
@@ -56,7 +65,7 @@ namespace HellBlasterTest.Tests
 			AddFileReference("nunit.framework");
 			AddFileReference("core");
 			AddFileReference("FIMS.DataTypes");
-			mainCtrl.WritingReference(String.Empty);			
+			Assert.IsFalse(mainCtrl.ReferenceSuggested(String.Empty));			
 			
 			viewMock.Verify(foo => foo.SuggestFileRefence(It.IsAny<string>()), Times.Never());
 		}
@@ -65,7 +74,7 @@ namespace HellBlasterTest.Tests
 		[Test]
 		public void WhenIStartTypingAReferenceNameAndThereIsAnyReferenceTheSystemDoesNotSuggest()
 		{
-			mainCtrl.WritingReference("nun");
+			Assert.IsFalse(mainCtrl.ReferenceSuggested("nun"));
 
 			viewMock.Verify(foo => foo.SuggestFileRefence(It.IsAny<string>()), Times.Never());
 		}
@@ -76,7 +85,7 @@ namespace HellBlasterTest.Tests
 			mainCtrl.ReferenceList = new List<FileReference>();
 			AddFileReference("nunit.framework");
 			AddFileReference("core");
-			mainCtrl.WritingReference("nun");
+			Assert.IsTrue(mainCtrl.ReferenceSuggested("nun"));
 
 			viewMock.Verify(foo => foo.SuggestFileRefence("nunit.framework"), Times.Once());
 		}
@@ -90,7 +99,7 @@ namespace HellBlasterTest.Tests
 			AddFileReference("nunit.framework2");
 			AddFileReference("nunit.framework3");
 			AddFileReference("core");
-			mainCtrl.WritingReference("nun");
+			Assert.IsFalse(mainCtrl.ReferenceSuggested("nun"));
 
 			viewMock.Verify(foo => foo.SuggestFileRefence(It.IsAny<string>()), Times.Never());
 		}
@@ -103,7 +112,7 @@ namespace HellBlasterTest.Tests
 			AddFileReference("nunit.framework");
 			AddFileReference("nunit.framework");			
 			AddFileReference("core");
-			mainCtrl.WritingReference("nun");
+			Assert.IsTrue(mainCtrl.ReferenceSuggested("nun"));
 
 			viewMock.Verify(foo => foo.SuggestFileRefence("nunit.framework"), Times.Once());
 		}
@@ -114,7 +123,7 @@ namespace HellBlasterTest.Tests
 			mainCtrl.ReferenceList = new List<FileReference>();
 			AddFileReference("nunit.framework");
 			AddFileReference("core");
-			mainCtrl.WritingReference("c");
+			Assert.IsTrue(mainCtrl.ReferenceSuggested("c"));
 
 			viewMock.Verify(foo => foo.SuggestFileRefence("core"), Times.Once());
 		}
@@ -126,7 +135,7 @@ namespace HellBlasterTest.Tests
 			mainCtrl.ReferenceList = new List<FileReference>();
 			AddFileReference("nunit.framework");
 			AddFileReference("core");
-			mainCtrl.WritingReference("j");
+			Assert.IsFalse(mainCtrl.ReferenceSuggested("j"));
 
 			viewMock.Verify(foo => foo.SuggestFileRefence(It.IsAny<string>()), Times.Never());
 		}
@@ -143,7 +152,7 @@ namespace HellBlasterTest.Tests
 		{
 			mainCtrl.LoadSolutionFile(TestSolutionPath);
 
-			mainCtrl.WritingReference("nun");
+			mainCtrl.ReferenceSuggested("nun");
 
 			viewMock.Verify(foo => foo.SuggestFileRefence("nunit.framework"), Times.Once());
 		}

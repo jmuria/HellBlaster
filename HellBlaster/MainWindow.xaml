@@ -8,25 +8,31 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >Solution Path:</TextBlock>
-            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="SolutionPath" Width="300"></TextBox>
-            <Button x:Name="Select" Click="Select_Click">Select</Button>
-            <Button x:Name="Analyze" Click="Analyze_Click">Analyze</Button>
-        </StackPanel>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition  Width="60"/>
+                <ColumnDefinition  Width="60"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" Grid.Column="0">VS10 Solution Path:</TextBlock>
+            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="SolutionPath"   Grid.Column="1"></TextBox>
+            <Button x:Name="Select" Click="Select_Click"  Grid.Column="2">Select</Button>
+            <Button x:Name="Analyze" Click="Analyze_Click"  Grid.Column="3">Analyze</Button>
+        </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >Update:</TextBlock>
-            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="AssemblyName" KeyDown="AssemblyName_KeyDown" Width="120"></TextBox>
-            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >To:</TextBlock>
+            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >Update reference:</TextBlock>
+            <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="AssemblyName" KeyDown="AssemblyName_KeyDown" Width="150"></TextBox>
+            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" >To Version:</TextBlock>
             <TextBox  Margin="0,0,10,0" VerticalAlignment="Center" x:Name="NewVersion" Width="40"></TextBox>
-            <Button x:Name="Update" Click="Update_Click">Update</Button>
+            <Button x:Name="Update" Click="Update_Click">Proceed</Button>
         </StackPanel>
         <ListView x:Name="Projects" Grid.Row="2" ItemsSource="{Binding}">
             <ListView.View>
                 <GridView AllowsColumnReorder="true"     >
-                    <GridViewColumn Header="Project" Width="150" DisplayMemberBinding="{Binding Path=projectName}" />
-                    <GridViewColumn Header="Reference" Width="170" DisplayMemberBinding="{Binding Path=referenceName}" />
-                    <GridViewColumn Header="Version" Width="250" DisplayMemberBinding="{Binding Path=version}" />                    
+                    <GridViewColumn Header="Project" Width="170" DisplayMemberBinding="{Binding Path=projectName}" />
+                    <GridViewColumn Header="Reference" Width="190" DisplayMemberBinding="{Binding Path=referenceName}" />
+                    <GridViewColumn Header="Version" Width="150" DisplayMemberBinding="{Binding Path=version}" />                    
                 </GridView>
             </ListView.View>
         </ListView>            

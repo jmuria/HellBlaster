@@ -68,6 +68,12 @@ namespace HellBlaster
 			}
 		}
 
+
+		public void CleanReferences()
+		{
+			References.Clear();
+		}
+
 		private void Select_Click(object sender, RoutedEventArgs e)
 		{
 			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -81,6 +87,7 @@ namespace HellBlaster
 			{
 				string filename = dlg.FileName;
 				SolutionPath.Text = filename;
+				ctrl.LoadSolutionFile(SolutionPath.Text);
 			}
 		}
 
@@ -101,17 +108,21 @@ namespace HellBlaster
 
 		private void AssemblyName_KeyDown(object sender, KeyEventArgs e)
 		{
-			ctrl.WritingReference(AssemblyName.Text);
+			if (ctrl.ReferenceSuggested(AssemblyName.Text))
+				e.Handled = true;
 		}
 
 
 		public void SuggestFileRefence(string assemblyName)
 		{
 			AssemblyName.Text = assemblyName;
+			AssemblyName.CaretIndex = AssemblyName.Text.Length;
 		}
 
-		
 
-		
+
+
+
+
 	}
 }
