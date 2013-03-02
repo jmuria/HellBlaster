@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace HellBlaster.Domain
+namespace HellBlaster.VS10
 {
 	public class VS10SolutionReader
 	{

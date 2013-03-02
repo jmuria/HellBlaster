@@ -5,8 +5,9 @@ using System.Text;
 using System.Xml.Linq;
 using System.Xml;
 using System.IO;
+using HellBlaster.Domain;
 
-namespace HellBlaster.Domain
+namespace HellBlaster.VS10
 {
 	public class VS10ProjectWriter : VS10ProjectReader
 	{

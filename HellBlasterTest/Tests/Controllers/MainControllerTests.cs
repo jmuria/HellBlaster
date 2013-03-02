@@ -7,6 +7,7 @@ using Moq;
 using HellBlaster.Interfaces;
 using HellBlaster.Controllers;
 using System.IO;
+using HellBlaster.VS10;
 using HellBlaster.Domain;
 
 namespace HellBlasterTest.Tests

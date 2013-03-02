@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HellBlaster.Interfaces;
+using HellBlaster.VS10;
 using HellBlaster.Domain;
 
 namespace HellBlaster.Controllers
