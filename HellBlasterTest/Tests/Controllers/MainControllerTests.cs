@@ -158,5 +158,18 @@ namespace HellBlasterTest.Tests
 			viewMock.Verify(foo => foo.SuggestFileRefence("nunit.framework"), Times.Once());
 		}
 
+
+		[Test]
+		public void WhenThereIsADiscrepancyInTheSolutionItIsMarkedInTheView()
+		{
+			mainCtrl.ReferenceList = new List<FileReference>();
+			mainCtrl.ReferenceList.Add(new FileReference("nunit.framework", "2.4", ""));
+			mainCtrl.ReferenceList.Add(new FileReference("core", "1.0", ""));
+			mainCtrl.ReferenceList.Add(new FileReference("nunit.framework", "2.6", ""));
+			mainCtrl.CheckDiscrepancies();
+			viewMock.Verify(foo => foo.ShowDiscrepancy("nunit.framework", "2.4"), Times.Once());
+			viewMock.Verify(foo => foo.ShowDiscrepancy("nunit.framework", "2.6"), Times.Once());
+		}
+
 	}
 }

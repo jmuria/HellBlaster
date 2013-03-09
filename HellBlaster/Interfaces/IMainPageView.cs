@@ -11,6 +11,7 @@ namespace HellBlaster.Interfaces
 		void AddFileRefence(string name, string version);
 		void UpdateFileRefence(string projectName, string assemblyName, string assemblyVersion);
 		void CleanReferences();
-		void SuggestFileRefence(string assemblyName);		
+		void SuggestFileRefence(string assemblyName);
+		void ShowDiscrepancy(string assemblyName,string version);
 	}
 }

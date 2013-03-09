@@ -8,7 +8,8 @@ namespace HellBlaster.View
 	public class Reference
 	{
 		public string projectName { get; set; }
-		public string referenceName { get; set; }
+		public string Name { get; set; }
 		public string version { get; set; }
+		public bool hasDiscrepancy { get; set; }
 	}
 }

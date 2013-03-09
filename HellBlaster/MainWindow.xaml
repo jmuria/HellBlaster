@@ -31,8 +31,9 @@
             <ListView.View>
                 <GridView AllowsColumnReorder="true"     >
                     <GridViewColumn Header="Project" Width="170" DisplayMemberBinding="{Binding Path=projectName}" />
-                    <GridViewColumn Header="Reference" Width="190" DisplayMemberBinding="{Binding Path=referenceName}" />
-                    <GridViewColumn Header="Version" Width="150" DisplayMemberBinding="{Binding Path=version}" />                    
+                    <GridViewColumn Header="Reference" Width="190" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="Version" Width="150" DisplayMemberBinding="{Binding Path=version}" />
+                    <GridViewColumn Header="Discrepancy?" Width="70" DisplayMemberBinding="{Binding Path=hasDiscrepancy}" />
                 </GridView>
             </ListView.View>
         </ListView>            

@@ -49,7 +49,7 @@ namespace HellBlaster
 		{
 			Reference newRef = new Reference();
 			newRef.projectName = lastProjectName;
-			newRef.referenceName = name;
+			newRef.Name = name;
 			newRef.version = version;
 			References.Add(newRef);
 		}
@@ -61,7 +61,7 @@ namespace HellBlaster
 		{
 			foreach (Reference refItem in References)
 			{
-				if (refItem.referenceName ==assemblyName)
+				if (refItem.Name ==assemblyName)
 				{
 					refItem.version=assemblyVersion;
 				}
@@ -87,7 +87,7 @@ namespace HellBlaster
 			{
 				string filename = dlg.FileName;
 				SolutionPath.Text = filename;
-				ctrl.LoadSolutionFile(SolutionPath.Text);
+			
 			}
 		}
 
@@ -119,10 +119,16 @@ namespace HellBlaster
 			AssemblyName.CaretIndex = AssemblyName.Text.Length;
 		}
 
+		
 
 
-
-
-
+		public void ShowDiscrepancy(string assemblyName,string version)
+		{
+			foreach (Reference refe in References)
+			{
+				if (refe.Name == assemblyName && refe.version == version)
+					refe.hasDiscrepancy = true;
+			}
+		}
 	}
 }

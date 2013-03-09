@@ -27,6 +27,7 @@ namespace HellBlaster.Controllers
 			View.CleanReferences();
 			foreach (VS10Project project in projects)
 				ShowProjectInSolution(project);
+			CheckDiscrepancies();
 		}
 
 		private  List<VS10Project> FindProjects(string solutionPath)
@@ -126,6 +127,15 @@ namespace HellBlaster.Controllers
 			return String.IsNullOrEmpty(foundReference) || refer.Name == foundReference;
 		}
 
-		
+
+		public void CheckDiscrepancies()
+		{
+			DiscrepancyDetector dc = new DiscrepancyDetector();
+
+			foreach (FileReference refer in ReferenceList)
+				dc.AddReference(refer);
+			foreach (FileReference refer in dc.Discrepancies())
+				View.ShowDiscrepancy(refer.Name,refer.Version);
+		}
 	}
 }

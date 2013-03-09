@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Controllers\MainControllerTests.cs" />
-    <Compile Include="Tests\Domain\OpenSolutionFolderTests.cs" />
-    <Compile Include="Tests\Domain\ProjectReaderTests.cs" />
-    <Compile Include="Tests\Domain\ReferenceInProjectUpdaterTests.cs" />
+    <Compile Include="Tests\Domain\DiscrepancyDetectorTests.cs" />
+    <Compile Include="Tests\Domain\VS10\OpenSolutionFolderTests.cs" />
+    <Compile Include="Tests\Domain\VS10\ProjectReaderTests.cs" />
+    <Compile Include="Tests\Domain\VS10\ReferenceInProjectUpdaterTests.cs" />
     <Compile Include="Tests\Domain\ReferenceTests.cs" />
     <Compile Include="Tests\Domain\ReferenceUpdaterTests.cs" />
-    <Compile Include="Tests\Domain\SolutionReaderTests.cs" />
+    <Compile Include="Tests\Domain\VS10\SolutionReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\Moq.dll" />

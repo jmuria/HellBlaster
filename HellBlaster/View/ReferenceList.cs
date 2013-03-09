@@ -12,12 +12,12 @@ namespace HellBlaster.View
 		{
 			Reference refe = new Reference();
 			refe.projectName = "Uno";
-			refe.referenceName = "core";
+			refe.Name = "core";
 			refe.version = "1.1";
 			Add(refe);
 			refe = new Reference();
 			refe.projectName = "Dos";
-			refe.referenceName = "core";
+			refe.Name = "core";
 			refe.version = "1.2";
 			Add(refe);
 		}
