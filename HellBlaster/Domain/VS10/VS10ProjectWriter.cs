@@ -24,11 +24,11 @@ namespace HellBlaster.VS10
 
 		public string UpdateReference(FileReference newRef)
 		{
-			StringBuilder modifiedXML = new StringBuilder();
+			StringWriterWithEncoding modifiedXML = new StringWriterWithEncoding(Encoding.UTF8);
 
 			using (XmlWriter xw = XmlWriter.Create(modifiedXML, XMLSettings()))
-			{
-				XElement project = XElement.Parse(FileContent);
+			{			
+				XElement project = XElement.Parse(FileContent);				
 				XElement foundRefElt=FindReference(newRef.Name, project);
 				if (foundRefElt != null)
 				{
@@ -79,13 +79,14 @@ namespace HellBlaster.VS10
 			XmlWriterSettings settings = new XmlWriterSettings();
 			settings.Indent = true;
 			settings.OmitXmlDeclaration = false;
-			settings.NewLineOnAttributes = true;
+			settings.NewLineOnAttributes = false;
+			settings.Encoding = Encoding.UTF8;			
 			return settings;
 		}
 
 		public void WriteToFile()
 		{
-			System.IO.File.WriteAllText(LoadedProjectPath,FileContent);
+			System.IO.File.WriteAllText(LoadedProjectPath,FileContent,Encoding.UTF8);
 		}
 	}
 }
