@@ -5,6 +5,8 @@ using System.Text;
 using NUnit.Framework;
 using HellBlaster.VS10;
 using HellBlaster.Domain;
+using HellBlaster.Interfaces;
+using Moq;
 
 namespace HellBlasterTest.Tests
 {
@@ -102,13 +104,28 @@ namespace HellBlasterTest.Tests
 		}
 
 		[Test]
-		public void WhenTheReferenceHasAVersionICanRetrieveIt()
+		public void WhenTheReferenceHasAVersionAndThereIsNotAccessToTheAssemblyICanRetrieveIt()
 		{
 			VS10ProjectReader pr = new VS10ProjectReader();
-			
+			var versionRet = new Mock<IVersionRetriever>();
+			pr.VersionRetriever = versionRet.Object;
+			versionRet.Setup(x => x.FileVersion(It.IsAny<string>())).Returns(null as string);
 			List<FileReference> refs = pr.FindFileReferences(vs10withOneFileReference);
 			Assert.AreEqual("2.6.1.12217", refs[0].Version);
 		}
+
+
+		[Test]
+		public void WhenTheReferenceHasAVersionAndThereIsAccessToTheAssemblyIGetTheFileVersion()
+		{
+			VS10ProjectReader pr = new VS10ProjectReader();
+			var versionRet = new Mock<IVersionRetriever>();
+			pr.VersionRetriever = versionRet.Object;
+			versionRet.Setup(x => x.FileVersion(It.IsAny<string>())).Returns("2.6");
+			List<FileReference> refs = pr.FindFileReferences(vs10withOneFileReference);
+			Assert.AreEqual("2.6", refs[0].Version);
+		}
+
 
 		[Test]
 		public void WhenTheReferenceHasAFilePathICanRetrieveIt()

@@ -5,11 +5,14 @@ using System.Text;
 using System.Xml.Linq;
 using System.IO;
 using HellBlaster.Domain;
+using HellBlaster.Interfaces;
 
 namespace HellBlaster.VS10
 {
 	public class VS10ProjectReader
 	{
+
+		public IVersionRetriever VersionRetriever { get; set; }
 
 		protected string ReferenceTag		{ get { return "Reference"; } }
 		protected string ProjectTag			{ get { return "Project"; } }
@@ -20,6 +23,11 @@ namespace HellBlaster.VS10
 		protected string LoadedProjectPath;
 		public string LastError { get; protected set; }
 
+
+		public VS10ProjectReader()
+		{
+			VersionRetriever = new VersionRetriever();
+		}
 
 		protected XNamespace Namespace
 		{
@@ -40,11 +48,11 @@ namespace HellBlaster.VS10
 				if (filerefs != null)
 				{
 					foundFileRefs = new List<FileReference>();
-					foreach (XElement fref in filerefs)
+					foreach (XElement fileRefInXML in filerefs)
 					{
-						string refPath = ReferencePath(fref);
+						string refPath = ReferencePath(fileRefInXML);
 						if(!String.IsNullOrEmpty(refPath))
-							foundFileRefs.Add(new FileReference(NameInsideAttribute(fref),VersionInsideAttribute(fref), ReferencePath(fref)));
+							foundFileRefs.Add(CreateFileRefFromXML(fileRefInXML));
 					}
 				}
 				return foundFileRefs;
@@ -57,6 +65,23 @@ namespace HellBlaster.VS10
 			{
 				return null;
 			}
+		}
+
+		private FileReference CreateFileRefFromXML(XElement fileRefInXML)
+		{			
+
+			return new FileReference(NameInsideAttribute(fileRefInXML), FindRightVersion(fileRefInXML), ReferencePath(fileRefInXML));
+		}
+
+		private string FindRightVersion(XElement fileRefInXML)
+		{
+			string version = String.Empty;
+			if (VersionRetriever != null)
+				version = VersionRetriever.FileVersion(ReferencePath(fileRefInXML));
+
+			if (String.IsNullOrEmpty(version))
+				version = VersionInsideAttribute(fileRefInXML);
+			return version;
 		}
 
 		protected IEnumerable<XElement> FindFileReferenceElements(string projectfilecontent)
@@ -142,5 +167,7 @@ namespace HellBlaster.VS10
 		{
 			return FindFileReferences(FileContent);
 		}
+
+		
 	}
 }

@@ -58,6 +58,8 @@
     </ApplicationDefinition>
     <Compile Include="Domain\DiscrepancyDetector.cs" />
     <Compile Include="Domain\StringWriterWithEncoding.cs" />
+    <Compile Include="Domain\VersionRetriever.cs" />
+    <Compile Include="Interfaces\IVersionRetriever.cs" />
     <Compile Include="View\ReferenceList.cs" />
     <Compile Include="View\Reference.cs" />
     <Page Include="MainWindow.xaml">

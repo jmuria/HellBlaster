@@ -44,8 +44,11 @@ namespace HellBlasterTest.Tests
 		public void WhenILoadASolutionFileThePreviouslyLoadedReferencesAreCleaned()
 		{
 			mainCtrl.LoadSolutionFile(TestSolutionPath);
-
-			viewMock.Verify(foo => foo.CleanReferences(), Times.Exactly(1));			
+			int numReferences = mainCtrl.ReferenceList.Count();
+			viewMock.Verify(foo => foo.CleanReferences(), Times.Exactly(1));
+			mainCtrl.LoadSolutionFile(TestSolutionPath);
+			Assert.AreEqual(numReferences,mainCtrl.ReferenceList.Count());
+			
 		}
 
 		[Test]

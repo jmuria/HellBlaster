@@ -23,11 +23,18 @@ namespace HellBlaster.Controllers
 
 		public void LoadSolutionFile(string solutionPath)
 		{
+			CleanPreviousData();
 			projects=FindProjects(solutionPath);
-			View.CleanReferences();
+			
 			foreach (VS10Project project in projects)
 				ShowProjectInSolution(project);
 			CheckDiscrepancies();
+		}
+
+		private void CleanPreviousData()
+		{
+			ReferenceList.Clear();
+			View.CleanReferences();
 		}
 
 		private  List<VS10Project> FindProjects(string solutionPath)
