@@ -1,7 +1,11 @@
 ﻿<Window x:Class="HellBlaster.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HellBlaster"
         Title="HellBlaster" Height="350" Width="525" WindowState="Maximized">
+    <Window.Resources>
+        <local:DiscrepancyColorConverter x:Key="BConverter"></local:DiscrepancyColorConverter>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -33,7 +37,22 @@
                     <GridViewColumn Header="Project" Width="170" DisplayMemberBinding="{Binding Path=projectName}" />
                     <GridViewColumn Header="Reference" Width="190" DisplayMemberBinding="{Binding Path=Name}" />
                     <GridViewColumn Header="Version" Width="150" DisplayMemberBinding="{Binding Path=version}" />
-                    <GridViewColumn Header="Discrepancy?" Width="70" DisplayMemberBinding="{Binding Path=hasDiscrepancy}" />
+                    <GridViewColumn Header="Discrepancy?" Width="70"  >
+                     
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                <TextBlock  Width="70" Text="{Binding Path=hasDiscrepancy}" >
+                                    <TextBlock.Background>
+                                      
+                                            <Binding Path="hasDiscrepancy" Converter="{StaticResource BConverter}"	/>                                          
+                                      
+                                    </TextBlock.Background>
+                                </TextBlock>
+
+                            </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                     
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>            

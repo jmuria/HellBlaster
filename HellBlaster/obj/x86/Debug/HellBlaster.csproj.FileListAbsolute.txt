@@ -10,3 +10,5 @@ D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.csproj.GenerateRe
 D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.exe
 D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster.pdb
 D:\Proyectos\HellBlaster\HellBlaster\bin\Debug\HellBlaster.exe.config
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Proyectos\HellBlaster\HellBlaster\obj\x86\Debug\HellBlaster_MarkupCompile.lref
