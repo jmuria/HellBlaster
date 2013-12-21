@@ -70,8 +70,7 @@ namespace HellBlaster.VS10
 			XAttribute attr = foundRefElt.Attribute(IncludeAttr);
 			if (!String.IsNullOrEmpty(VersionInsideAttribute(foundRefElt)))
 				attr.Value = attr.Value.Replace(VersionInsideAttribute(foundRefElt), newVersion);
-			else
-				attr.Value = attr.Value + ", Version=" + newVersion;
+			
 		}
 
 		private static XmlWriterSettings XMLSettings()

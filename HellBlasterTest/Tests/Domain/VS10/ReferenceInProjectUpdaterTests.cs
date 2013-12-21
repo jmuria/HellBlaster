@@ -133,10 +133,11 @@ namespace HellBlasterTest.Tests
 			FileReference newRef = new FileReference("core", "1.2", @"R:\Core\1.2\NET35\core.dll");
 			String projectXML = pr.UpdateReference(newRef);
 
+			Assert.IsTrue(projectXML.IndexOf("<Reference Include=\"core\"") > 0);
 			VS10ProjectReader prReader = new VS10ProjectReader();
 			List<FileReference> refs = prReader.FindFileReferences(projectXML);
 			Assert.AreEqual(@"R:\Core\1.2\NET35\core.dll", refs[0].Path);
-			Assert.AreEqual("1.2", refs[0].Version);
+			Assert.AreEqual(null, refs[0].Version);
 			Assert.AreEqual("core", refs[0].Name);
 		}
 
@@ -152,8 +153,7 @@ namespace HellBlasterTest.Tests
 
 			VS10ProjectReader prReader = new VS10ProjectReader();
 			List<FileReference> refs = prReader.FindFileReferences(projectXML);
-			Assert.AreEqual(@"R:\Core\1.2\NET35\core.dll", refs[0].Path);
-			Assert.AreEqual("1.2", refs[0].Version);
+			Assert.AreEqual(@"R:\Core\1.2\NET35\core.dll", refs[0].Path);			
 			Assert.AreEqual("core", refs[0].Name);
 		}
 	}
